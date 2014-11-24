@@ -17,7 +17,7 @@
 
 macro_rules! rterrln (
     ($fmt:expr $($arg:tt)*) => ( {
-        format_args!(::util::dumb_print, concat!($fmt, "\n") $($arg)*)
+        format_args!(::rt::util::dumb_print, concat!($fmt, "\n") $($arg)*)
     } )
 )
 
@@ -32,7 +32,7 @@ macro_rules! rtdebug (
 
 macro_rules! rtassert (
     ( $arg:expr ) => ( {
-        if ::util::ENFORCE_SANITY {
+        if ::rt::util::ENFORCE_SANITY {
             if !$arg {
                 rtabort!(" assertion failed: {}", stringify!($arg));
             }
@@ -42,5 +42,5 @@ macro_rules! rtassert (
 
 
 macro_rules! rtabort (
-    ($($arg:tt)*) => (format_args!(::util::abort, $($arg)*))
+    ($($arg:tt)*) => (format_args!(::rt::util::abort, $($arg)*))
 )
